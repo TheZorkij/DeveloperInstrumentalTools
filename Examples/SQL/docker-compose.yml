@@ -1,24 +1,14 @@
-version: '3.7'
-
+version: '2.0'
 services:
-
-  postgres:
-    container_name: 'examples.postgres'
-    restart: always
-    image: postgres
-    build:
-      context: ./
-      dockerfile: postgres.dockerfile
+  db:
+    image: "${PGIMAGE}"   
+    container_name: dev-db 
     ports:
-      - "5432:5432"
+      - "${PGPORT}:5432"
     volumes:
-      - /usr/postgres/data:/var/lib/postgresql/data
+      - "./init:/docker-entrypoint-initdb.d"
+      - "./pgdata:/var/lib/postgresql/data"
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_MULTIPLE_DATABASES=exampledb
-    networks:
-      - internal
-
-networks:
-  internal:
-    driver: bridge
+     POSTGRES_USER:     "${PGUSER}"
+     POSTGRES_PASSWORD: "${PGPASSWORD}"
+     POSTGRES_DB:       "${PGDATABASE}"
