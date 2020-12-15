@@ -1,6 +1,6 @@
 SHELL = bash
 
-PGPORT     ?= 5445
+PGPORT     ?= 5432
 PGHOST     ?= localhost
 PGUSER     ?= postgres
 PGDATABASE ?= dev-db
@@ -15,6 +15,9 @@ up:
 
 down:
 	cd SQL && docker-compose down
+
+publish:
+	cd ./SQL/WebApplication.EFCore && dotnet publish && cd ../Database.EFCore && dotnet publish
 
 unlock-pgdata:
 	cd SQL && sudo chmod a+rwx pgdata && sudo chown -R root:${USER} pgdata

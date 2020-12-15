@@ -12,3 +12,15 @@ services:
      POSTGRES_USER:     "${PGUSER}"
      POSTGRES_PASSWORD: "${PGPASSWORD}"
      POSTGRES_DB:       "${PGDATABASE}"
+
+  webapp:
+    container_name: 'webapp'
+    restart: always
+    image: webapp
+    build:
+      context: ./
+      dockerfile: webapp.dockerfile
+    ports:
+      - "5000:80"
+    links:
+      - "db"
