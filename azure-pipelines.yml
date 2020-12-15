@@ -35,7 +35,7 @@ steps:
   inputs:
     command: 'push'
     feedsToUse: 'select'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/drop/*.nupkg'
     nuGetFeedType: 'internal'
     vstsFeed: DeveloperTools/App_feed
     publishVstsFeed: DeveloperTools/App_feed
