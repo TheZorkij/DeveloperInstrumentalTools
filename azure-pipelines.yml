@@ -30,13 +30,21 @@ steps:
     nobuild: true
     versioningScheme: 'off' 
 
-- task: NuGetCommand@2
-  displayName: 'nuget push'
+- task: DotNetCoreCLI@2
+  displayName: "dotnet push"
   inputs:
     command: 'push'
-    feedsToUse: 'select'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/drop/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'internal'
-    vstsFeed: DeveloperTools/App_feed
-    publishVstsFeed: DeveloperTools/App_feed
-    allowPackageConflicts: true
+    publishVstsFeed: 'DeveloperTools/App_feed'
+
+# - task: NuGetCommand@2
+#   displayName: 'nuget push'
+#   inputs:
+#     command: 'push'
+#     feedsToUse: 'select'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/drop/*.nupkg'
+#     nuGetFeedType: 'internal'
+#     vstsFeed: DeveloperTools/App_feed
+#     publishVstsFeed: DeveloperTools/App_feed
+#     allowPackageConflicts: true
