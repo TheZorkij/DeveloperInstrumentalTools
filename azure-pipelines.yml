@@ -27,6 +27,7 @@ steps:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
     packagesToPack: 'Examples/SQL/Database.EFCore/Database.EFCore.csproj'
+    majorVersion: 1.0.1
     nobuild: true
     versioningScheme: 'off' 
 
