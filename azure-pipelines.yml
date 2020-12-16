@@ -27,27 +27,26 @@ steps:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
     packagesToPack: 'Examples/SQL/Database.EFCore/Database.EFCore.csproj'
-    majorVersion: 1
-    minorVersion: 2
     nobuild: true
-    versioningScheme: 'off' 
+    versioningScheme: 'byPrereleaseNumber' 
+    majorVersion: '1'
+    minorVersion: '1'
+    patchVersion: '0'
 
 - task: DotNetCoreCLI@2
   displayName: "dotnet push"
   inputs:
     command: 'push'
-    majorVersion: 1
-    minorVersion: 2
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'DeveloperTools/App_feed'
     
-# - task: PublishBuildArtifacts@1
-#  inputs:
-#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#    ArtifactName: 'Database.EFCore'
-#    publishLocation: 'FilePath'
-#    TargetPath: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Database.EFCore'
+    publishLocation: 'FilePath'
+    TargetPath: '$(Build.ArtifactStagingDirectory)'
     
     
 # - task: NuGetCommand@2
