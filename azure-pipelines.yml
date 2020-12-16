@@ -27,7 +27,8 @@ steps:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
     packagesToPack: 'Examples/SQL/Database.EFCore/Database.EFCore.csproj'
-    majorVersion: 1.0.1
+    majorVersion: 1
+    minorVersion: 2
     nobuild: true
     versioningScheme: 'off' 
 
@@ -35,6 +36,8 @@ steps:
   displayName: "dotnet push"
   inputs:
     command: 'push'
+    majorVersion: 1
+    minorVersion: 2
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'DeveloperTools/App_feed'
