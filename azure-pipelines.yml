@@ -45,6 +45,7 @@ steps:
     publishLocation: 'FilePath'
     TargetPath: '$(Build.ArtifactStagingDirectory)'
     
+    
 # - task: NuGetCommand@2
 #   displayName: 'nuget push'
 #   inputs:
