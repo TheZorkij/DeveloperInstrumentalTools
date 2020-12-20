@@ -30,23 +30,22 @@ steps:
     nobuild: true
     versioningScheme: 'byPrereleaseNumber' 
     majorVersion: '1'
-    minorVersion: '1'
+    minorVersion: '2'
     patchVersion: '0'
 
-- task: DotNetCoreCLI@2
-  displayName: "dotnet push"
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'DeveloperTools/App_feed'
+# - task: DotNetCoreCLI@2
+#   displayName: "dotnet push"
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+#     nuGetFeedType: 'internal'
+#     publishVstsFeed: 'DeveloperTools/App_feed'
     
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'Database.EFCore'
-    publishLocation: 'FilePath'
-    TargetPath: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
     
     
 # - task: NuGetCommand@2
